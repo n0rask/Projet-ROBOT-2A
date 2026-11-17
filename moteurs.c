@@ -95,7 +95,7 @@ void robot_init_moteurs(void)
     TA1CTL   = TASSEL_2 | MC_1 | TACLR;
 }
 
-void robot_set_moteurs(int8_t gauche, int8_t droite)
+void moteurs_set(int8_t gauche, int8_t droite)
 {
 #if MOTEUR_A_EST_GAUCHE
     commande_moteur_a(gauche);
@@ -109,28 +109,28 @@ void robot_set_moteurs(int8_t gauche, int8_t droite)
 void robot_avancer(uint8_t vitesse)
 {
     int8_t v = (vitesse > 100) ? 100 : (int8_t)vitesse;
-    robot_set_moteurs(v, v);
+    moteurs_set(v, v);
 }
 
 void robot_reculer(uint8_t vitesse)
 {
     int8_t v = (vitesse > 100) ? 100 : (int8_t)vitesse;
-    robot_set_moteurs(-v, -v);
+    moteurs_set(-v, -v);
 }
 
 void robot_tourner_gauche(uint8_t vitesse)
 {
     int8_t v = (vitesse > 100) ? 100 : (int8_t)vitesse;
-    robot_set_moteurs(-v, v);     /* roue gauche en arriere, droite en avant */
+    moteurs_set(-v, v);     /* roue gauche en arriere, droite en avant */
 }
 
 void robot_tourner_droite(uint8_t vitesse)
 {
     int8_t v = (vitesse > 100) ? 100 : (int8_t)vitesse;
-    robot_set_moteurs(v, -v);     /* roue gauche en avant, droite en arriere */
+    moteurs_set(v, -v);     /* roue gauche en avant, droite en arriere */
 }
 
-void robot_arreter(void)
+void moteurs_arreter(void)
 {
-    robot_set_moteurs(0, 0);
+    moteurs_set(0, 0);
 }
