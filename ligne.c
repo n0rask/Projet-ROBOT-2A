@@ -1,10 +1,10 @@
 /*
- * ligne.c - Suivi de ligne par machine d'etat (membre 2)
+ * ligne.c - Suivi de ligne par machine d'etat
  *
  * Convention : "blanc" = 1, "noir" = 0.
  * Capteurs : un de chaque cote de la ligne blanche. Centre -> (0,0).
  *
- * DEPENDANCES (a confirmer avec le membre 1) :
+ * DEPENDANCES (a confirmer ) :
  *   void moteurs_set(int16_t vitesse_g, int16_t vitesse_d);  // -100..+100
  *   void moteurs_arreter(void);
  *

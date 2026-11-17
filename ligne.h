@@ -1,5 +1,5 @@
 /*
- * ligne.h - Suivi de ligne par machine d'etat (membre 2)
+ * Suivi de ligne par machine d'etat
  * Cible : MSP430G2553 (Launchpad sur SAMboard v3)
  *
  * Utilisation :
@@ -17,10 +17,10 @@
 /* Parametres a valider avec l'equipe / a regler sur le terrain        */
 /* ------------------------------------------------------------------ */
 
-/* Periode d'appel de ligne_update() (fournie par le tick du membre 4) */
+/* Periode d'appel de ligne_update() (fournie par la temporisation */
 #define LIGNE_PERIODE_MS        5
 
-/* Canaux ADC10 des capteurs (P1.4 = A4, P1.5 = A5) - a valider */
+/* Canaux ADC10 des capteurs (P1.4 = A4, P1.5 = A5) provisoire */
 #define LIGNE_CANAL_GAUCHE      4
 #define LIGNE_CANAL_DROIT       5
 
@@ -46,7 +46,7 @@
 /* Temporisations (ms) */
 #define LIGNE_T_CORRECTION_MAX_MS   1000 /* correction trop longue -> PERDU    */
 #define LIGNE_T_PERDU_MAX_MS        1500 /* recherche trop longue -> ARRET     */
-#define LIGNE_T_SANS_BLANC_MAX_MS      0 /* 0 = desactive (voir note ligne.c)  */
+#define LIGNE_T_SANS_BLANC_MAX_MS      0 /* 0 = desactive  */
 #define LIGNE_T_BLOCAGE_MS           500 /* temps mort apres acquittement
                                             d'un blanc double                  */
 
@@ -83,13 +83,13 @@ void ligne_calculer_seuils(void);          /* calcule seuil bas / haut       */
 /* Machine d'etat                                                      */
 /* ------------------------------------------------------------------ */
 
-void         ligne_start(void);            /* -> AVANCE                      */
-void         ligne_stop(void);             /* -> ARRET, moteurs coupes       */
+void         ligne_start(void);            /*  AVANCE                      */
+void         ligne_stop(void);             /* ARRET, moteurs coupes       */
 void         ligne_update(void);           /* 1 pas, NON bloquant            */
-ligne_etat_t ligne_get_etat(void);
+ligne_etat_t ligne_get_etat(void); // avoir la position   de la ligne
 
 /* ------------------------------------------------------------------ */
-/* Interface pour navigation (membre 5)                                */
+/* Interface pour navigation                                */
 /* ------------------------------------------------------------------ */
 
 uint8_t ligne_blanc_double_detecte(void);  /* 1 si croisement/cercle vu      */
