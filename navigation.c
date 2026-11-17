@@ -48,7 +48,7 @@ void navigation_init(void)
 
     obstacle_init();
 
-    robot_arreter();
+    moteurs_arreter();
 
     etat_navigation = NAV_ARRET;
     nombre_livraisons = 0;
@@ -82,7 +82,7 @@ void navigation_demarrer(void)
  */
 static void navigation_arreter(void)
 {
-    robot_arreter();
+    moteurs_arreter();
     etat_navigation = NAV_TERMINE;
 }
 
@@ -112,7 +112,7 @@ void navigation_update(void)
     if (temporisation_ecoulee(debut_parcours,
                               NAV_DUREE_MAX_MS))
     {
-        robot_arreter();
+        moteurs_arreter();
         etat_navigation = NAV_TIMEOUT;
         return;
     }
@@ -120,7 +120,7 @@ void navigation_update(void)
     /* Arret temporaire sur une zone de livraison */
     if (etat_navigation == NAV_ARRET_LIVRAISON)
     {
-        robot_arreter();
+        moteurs_arreter();
 
         if (temporisation_ecoulee(debut_livraison,
                                   NAV_DUREE_LIVRAISON_MS))
@@ -151,7 +151,7 @@ void navigation_update(void)
 
     if (obstacle_detecte())
     {
-        robot_arreter();
+        moteurs_arreter();
         etat_navigation = NAV_ATTENTE_OBSTACLE;
         return;
     }
@@ -170,7 +170,7 @@ void navigation_update(void)
     /* Verification d'une perte definitive de la ligne */
     if (ligne_echec())
     {
-        robot_arreter();
+        moteurs_arreter();
         etat_navigation = NAV_ERREUR;
         return;
     }
@@ -188,7 +188,7 @@ void navigation_update(void)
         {
             nombre_livraisons++;
 
-            robot_arreter();
+            moteurs_arreter();
 
             debut_livraison = temporisation_get_ms();
 
