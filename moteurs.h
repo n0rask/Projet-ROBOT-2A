@@ -20,13 +20,13 @@ void robot_init_moteurs(void);
 
 /* Commande independante des deux moteurs : indispensable pour le suivi de ligne
  * (le module ligne corrige la trajectoire en donnant des vitesses differentes). */
-void robot_set_moteurs(int8_t gauche, int8_t droite);
+void moteurs_set(int8_t gauche, int8_t droite);
 
 /* Deplacements simples. */
 void robot_avancer(uint8_t vitesse);
 void robot_reculer(uint8_t vitesse);
 void robot_tourner_gauche(uint8_t vitesse);   /* pivot sur place */
 void robot_tourner_droite(uint8_t vitesse);   /* pivot sur place */
-void robot_arreter(void);
+void moteurs_arreter(void);
 
 #endif /* MOTEURS_H_ */
